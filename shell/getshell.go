@@ -11,7 +11,7 @@ import (
 	context "golang.org/x/net/context"
 )
 
-func NewShell() (Shell, error) {
+func New() (Shell, error) {
 	myShell, err := getApiShell()
 	if err == nil {
 		fmt.Println("got an api shell!")
