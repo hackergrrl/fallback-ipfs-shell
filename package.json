@@ -1,0 +1,9 @@
+{
+  "name": "easy-ipfs-shell",
+  "author": "stephen",
+  "version": "1.0.0",
+  "language": "go",
+  "go": {
+    "dvcsimport": "github.com/noffle/easy-ipfs-shell"
+  }
+}
