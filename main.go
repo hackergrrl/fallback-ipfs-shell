@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	shell, err := shell.MakeLocalShellWithEmbeddedFallback()
+	shell, err := shell.NewShell()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error: %s\n", err)
 		os.Exit(1)

@@ -11,7 +11,7 @@ import (
 	context "golang.org/x/net/context"
 )
 
-func MakeLocalShellWithEmbeddedFallback() (Shell, error) {
+func NewShell() (Shell, error) {
 	myShell, err := getApiShell()
 	if err == nil {
 		fmt.Println("got an api shell!")
