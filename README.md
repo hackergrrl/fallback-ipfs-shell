@@ -11,8 +11,8 @@ import (
 )
 ```
 
-# shell.MakeLocalShellWithEmbeddedFallback() (shell.Shell, error)
+### shell.MakeShell() (shell.Shell, error)
 
-Returns a Shell interface, preferring a local HTTP API node, but falling back to
-producing a new ephemeral node that self-bootstraps.
+Returns a Shell interface, preferring a local HTTP API node if it can find one,
+but falling back to producing a new ephemeral node that self-bootstraps.
 
