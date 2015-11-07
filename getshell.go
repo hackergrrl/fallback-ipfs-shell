@@ -11,16 +11,16 @@ import (
 	context "golang.org/x/net/context"
 )
 
-func New() (Shell, error) {
+func NewShell() (Shell, error) {
 	myShell, err := getApiShell()
 	if err == nil {
-		fmt.Println("got an api shell!")
+		// fmt.Println("got an api shell!")
 		return myShell, nil
 	}
 
 	myShell, err = getEmbeddedShell()
 	if err == nil {
-		fmt.Println("got an embedded shell!")
+		// fmt.Println("got an embedded shell!")
 		return myShell, nil
 	}
 
