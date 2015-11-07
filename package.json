@@ -1,9 +1,9 @@
 {
-  "name": "easy-ipfs-shell",
-  "author": "stephen",
+  "name": "fallback-ipfs-shell",
+  "author": "Stephen Whitmore <sww@eight45.net>",
   "version": "3.0.0",
   "language": "go",
   "go": {
-    "dvcsimport": "github.com/noffle/easy-ipfs-shell"
+    "dvcsimport": "github.com/noffle/fallback-ipfs-shell"
   }
 }

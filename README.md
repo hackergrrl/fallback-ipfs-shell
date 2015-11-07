@@ -1,13 +1,13 @@
 # Installation
 
 ```
-$ go get github.com/noffle/easy-ipfs-shell
+$ go get github.com/noffle/fallback-ipfs-shell
 ```
 
 # Usage
 ```
 import (
-  shell "github.com/noffle/easy-ipfs-shell/shell"
+  shell "github.com/noffle/fallback-ipfs-shell/shell"
 )
 ```
 
