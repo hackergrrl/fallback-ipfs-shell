@@ -2,13 +2,10 @@ package shell
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"os/signal"
 
 	api "github.com/ipfs/go-ipfs-api"
-	core "github.com/ipfs/go-ipfs/core"
-	config "github.com/ipfs/go-ipfs/repo/config"
 	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
 	embedded "github.com/whyrusleeping/ipfs-embedded-shell"
 	context "golang.org/x/net/context"
@@ -57,30 +54,7 @@ func getEmbeddedShell() (Shell, error) {
 		return shell, nil
 	}
 
-	dir, err := ioutil.TempDir("", "ipfs-shell")
-	if err != nil {
-		return nil, fmt.Errorf("failed to get temp dir: %s", err)
-	}
-
-	cfg, err := config.Init(ioutil.Discard, 1024)
-	if err != nil {
-		return nil, err
-	}
-
-	err = fsrepo.Init(dir, cfg)
-	if err != nil {
-		return nil, fmt.Errorf("failed to init ephemeral node: %s", err)
-	}
-
-	repo, err := fsrepo.Open(dir)
-	if err != nil {
-		return nil, err
-	}
-
-	node, err := core.NewNode(ctx, &core.BuildCfg{
-		Online: true,
-		Repo:   repo,
-	})
+	node, err := embedded.NewTmpDirNode(ctx)
 	if err != nil {
 		return nil, err
 	}
