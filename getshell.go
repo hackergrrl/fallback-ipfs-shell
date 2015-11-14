@@ -2,10 +2,13 @@ package shell
 
 import (
 	"fmt"
+	"io/ioutil"
 	"os"
 	"os/signal"
 
 	api "github.com/ipfs/go-ipfs-api"
+	core "github.com/ipfs/go-ipfs/core"
+	config "github.com/ipfs/go-ipfs/repo/config"
 	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
 	embedded "github.com/whyrusleeping/ipfs-embedded-shell"
 	context "golang.org/x/net/context"
@@ -49,17 +52,54 @@ func getEmbeddedShell() (Shell, error) {
 		cancel()
 	}()
 
-	repoPath, err := getRepoPath()
-	if err != nil {
-		return nil, fmt.Errorf("couldn't get repo path: %s", err)
+	shell, err := tryLocal(ctx)
+	if err == nil {
+		return shell, nil
 	}
 
-	embeddedShell, err := embedded.NewDefaultNodeWithFSRepo(ctx, repoPath)
+	dir, err := ioutil.TempDir("", "ipfs-shell")
+	if err != nil {
+		return nil, fmt.Errorf("failed to get temp dir: %s", err)
+	}
+
+	cfg, err := config.Init(ioutil.Discard, 1024)
+	if err != nil {
+		return nil, err
+	}
+
+	err = fsrepo.Init(dir, cfg)
+	if err != nil {
+		return nil, fmt.Errorf("failed to init ephemeral node: %s", err)
+	}
+
+	repo, err := fsrepo.Open(dir)
+	if err != nil {
+		return nil, err
+	}
+
+	node, err := core.NewNode(ctx, &core.BuildCfg{
+		Online: true,
+		Repo:   repo,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	return embedded.NewShell(node), nil
+}
+
+func tryLocal(ctx context.Context) (Shell, error) {
+	repoPath, err := getRepoPath()
+	if err != nil {
+		return nil, err
+	}
+
+	node, err := embedded.NewDefaultNodeWithFSRepo(ctx, repoPath)
 	if err != nil {
 		return nil, fmt.Errorf("couldn't get embedded shell: %s", err)
 	}
 
-	return embedded.NewShell(embeddedShell), nil
+	return embedded.NewShell(node), nil
 }
 
 func getRepoPath() (string, error) {
