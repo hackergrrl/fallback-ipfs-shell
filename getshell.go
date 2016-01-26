@@ -5,9 +5,9 @@ import (
 	"os"
 	"os/signal"
 
-	embedded "github.com/cryptix/exp/ipfs-embeddedShell"
 	api "github.com/ipfs/go-ipfs-api"
 	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
+	embedded "github.com/whyrusleeping/ipfs-embedded-shell"
 	context "golang.org/x/net/context"
 )
 
