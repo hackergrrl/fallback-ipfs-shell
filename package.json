@@ -1,7 +1,24 @@
 {
-  "name": "fallback-ipfs-shell",
-  "author": "Stephen Whitmore <sww@eight45.net>",
-  "version": "3.1.0",
+  "author": "Stephen Whitmore <noffle@ipfs.io>",
+  "bugs": {},
+  "gxDependencies": [
+    {
+      "author": "noffle",
+      "hash": "QmQzHe8hQqHt3958XNkKvaDjQJ5TfpmZtGUAtYNBJAmCGm",
+      "name": "go-ipfs-api",
+      "version": "0.0.0"
+    },
+    {
+      "author": "noffle",
+      "hash": "QmTrvhAM8734GYEY7JCtAgJrqUWkEvM7va9Qysq2u2o1LA",
+      "name": "ipfs-embedded-shell",
+      "version": "0.0.0"
+    }
+  ],
+  "gxVersion": "0.7.0",
+  "issues_url": "",
   "language": "go",
-  "issues_url": ""
+  "license": "",
+  "name": "fallback-ipfs-shell",
+  "version": "3.1.0"
 }
