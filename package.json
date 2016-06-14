@@ -4,13 +4,13 @@
   "gxDependencies": [
     {
       "author": "noffle",
-      "hash": "QmUBa4w6CbHJUMeGJPDiMEDWsM93xToK1fTnFXnrC8Hksw",
+      "hash": "QmbqTJj3oRaf4rUaWCSQZC8pt5jWNJtVgfCzFYocVnq6nQ",
       "name": "go-ipfs-api",
       "version": "0.0.0"
     },
     {
       "author": "noffle",
-      "hash": "QmTrvhAM8734GYEY7JCtAgJrqUWkEvM7va9Qysq2u2o1LA",
+      "hash": "QmXYgMoWkWcTMvxVaGQbE7CmTZDFLKDDmFxkdngJNUhrhe",
       "name": "ipfs-embedded-shell",
       "version": "0.0.0"
     }
