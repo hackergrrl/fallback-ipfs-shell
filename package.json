@@ -10,9 +10,15 @@
     },
     {
       "author": "noffle",
-      "hash": "QmbV34QGpZM44uEeu8N7Ppmv7Gx2Ev5UVeoo4np7mZbE8T",
+      "hash": "QmYxnHPyYibhFw8jeZMhJrxXanKizezyNBW9AL1AwedC1A",
       "name": "ipfs-embedded-shell",
-      "version": "0.0.0"
+      "version": "0.0.1"
+    },
+    {
+      "author": "ipfs",
+      "hash": "QmeUNjuZg7vSBPYHSF5VdSe9t3Y18g57ot2n6Wi3sJhtgN",
+      "name": "go-ipfs-api",
+      "version": "1.0.0"
     }
   ],
   "gxVersion": "0.7.0",
