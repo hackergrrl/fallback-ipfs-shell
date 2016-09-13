@@ -14,7 +14,7 @@ func TestCat(t *testing.T) {
 		os.Exit(1)
 	}
 
-	reader, err := myShell.Cat("QmQLBvJ3ur7U7mzbYDLid7WkaciY84SLpPYpGPHhDNps2Y")
+	reader, err := myShell.Cat("QmYCvbfNbCwFR45HiNP45rwJgvatpiW38D961L5qAhUM5Y")
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error: %s\n", err)
 		os.Exit(1)
@@ -24,7 +24,13 @@ func TestCat(t *testing.T) {
 	buf.ReadFrom(reader)
 	output := buf.String()
 
-	expected := "\"The man who makes no mistakes does not make anything.\" - Edward John Phelps\n"
+	expected := `Come hang out in our IRC chat room if you have any questions.
+
+Contact the ipfs dev team:
+- Bugs: https://github.com/ipfs/go-ipfs/issues
+- Help: irc.freenode.org/#ipfs
+- Email: dev@ipfs.io
+`
 
 	if output != expected {
 		t.FailNow()
