@@ -12,13 +12,13 @@ import (
 )
 
 func NewShell() (Shell, error) {
-	myShell, err := getApiShell()
+	myShell, err := NewApiShell()
 	if err == nil {
 		// fmt.Println("got an api shell!")
 		return myShell, nil
 	}
 
-	myShell, err = getEmbeddedShell()
+	myShell, err = NewEmbeddedShell()
 	if err == nil {
 		// fmt.Println("got an embedded shell!")
 		return myShell, nil
@@ -27,7 +27,7 @@ func NewShell() (Shell, error) {
 	return nil, err
 }
 
-func getApiShell() (Shell, error) {
+func NewApiShell() (Shell, error) {
 	apiShell := api.NewShell("http://127.0.0.1:5001")
 	_, _, err := apiShell.Version()
 	if err != nil {
@@ -37,7 +37,7 @@ func getApiShell() (Shell, error) {
 	return apiShell, nil
 }
 
-func getEmbeddedShell() (Shell, error) {
+func NewEmbeddedShell() (Shell, error) {
 	ctx, cancel := context.WithCancel(context.Background())
 
 	// Cancel the ipfs node context if the process gets interrupted or killed.
