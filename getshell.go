@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/signal"
+	"path/filepath"
 
 	api "github.com/ipfs/go-ipfs-api"
 	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
@@ -28,7 +29,12 @@ func NewShell() (Shell, error) {
 }
 
 func NewApiShell() (Shell, error) {
-	apiShell := api.NewShell("http://127.0.0.1:5001")
+	api, err := apiAddr()
+	if err != nil {
+		return nil, err
+	}
+
+	apiShell := api.NewShell(api)
 	_, _, err := apiShell.Version()
 	if err != nil {
 		return nil, err
@@ -82,4 +88,40 @@ func getRepoPath() (string, error) {
 		return "", err
 	}
 	return repoPath, nil
+}
+
+// APIAddr returns the registered API addr, according to the api file
+// in the fsrepo. This is a concurrent operation, meaning that any
+// process may read this file. modifying this file, therefore, should
+// use "mv" to replace the whole file and avoid interleaved read/writes.
+func apiAddr() (string, error) {
+	repoPath, err := getRepoPath()
+	if err != nil {
+		return nil, err
+	}
+
+	repoPath = filepath.Clean(repoPath)
+	apiFilePath := filepath.Join(repoPath, "api")
+
+	// if there is no file, assume there is no api addr.
+	f, err := os.Open(apiFilePath)
+	if err != nil {
+		if os.IsNotExist(err) {
+			return "", repo.ErrApiNotRunning
+		}
+		return "", err
+	}
+	defer f.Close()
+
+	// read up to 2048 bytes. io.ReadAll is a vulnerability, as
+	// someone could hose the process by putting a massive file there.
+	buf := make([]byte, 2048)
+	n, err := f.Read(buf)
+	if err != nil && err != io.EOF {
+		return "", err
+	}
+
+	s := string(buf[:n])
+	s = strings.TrimSpace(s)
+	return s, nil
 }
