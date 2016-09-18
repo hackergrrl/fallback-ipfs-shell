@@ -2,9 +2,11 @@ package shell
 
 import (
 	"fmt"
+	"io"
 	"os"
 	"os/signal"
 	"path/filepath"
+	"strings"
 
 	api "github.com/ipfs/go-ipfs-api"
 	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
@@ -29,13 +31,13 @@ func NewShell() (Shell, error) {
 }
 
 func NewApiShell() (Shell, error) {
-	api, err := apiAddr()
+	addr, err := apiAddr()
 	if err != nil {
 		return nil, err
 	}
 
-	apiShell := api.NewShell(api)
-	_, _, err := apiShell.Version()
+	apiShell := api.NewShell(addr)
+	_, _, err = apiShell.Version()
 	if err != nil {
 		return nil, err
 	}
@@ -97,7 +99,7 @@ func getRepoPath() (string, error) {
 func apiAddr() (string, error) {
 	repoPath, err := getRepoPath()
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 
 	repoPath = filepath.Clean(repoPath)
@@ -107,7 +109,7 @@ func apiAddr() (string, error) {
 	f, err := os.Open(apiFilePath)
 	if err != nil {
 		if os.IsNotExist(err) {
-			return "", repo.ErrApiNotRunning
+			return "", err
 		}
 		return "", err
 	}
