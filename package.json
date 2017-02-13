@@ -4,15 +4,9 @@
   "gxDependencies": [
     {
       "author": "noffle",
-      "hash": "QmbqTJj3oRaf4rUaWCSQZC8pt5jWNJtVgfCzFYocVnq6nQ",
-      "name": "go-ipfs-api",
-      "version": "0.0.0"
-    },
-    {
-      "author": "noffle",
-      "hash": "QmYxnHPyYibhFw8jeZMhJrxXanKizezyNBW9AL1AwedC1A",
+      "hash": "QmUDMGgMQuykb4883TugtGN4fWP1hUhc1uk3gSL2R5wgW9",
       "name": "ipfs-embedded-shell",
-      "version": "0.0.1"
+      "version": "0.0.2"
     },
     {
       "author": "ipfs",
