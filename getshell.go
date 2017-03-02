@@ -1,6 +1,7 @@
 package shell
 
 import (
+	"context"
 	"fmt"
 	"io"
 	"os"
@@ -10,8 +11,7 @@ import (
 
 	api "github.com/ipfs/go-ipfs-api"
 	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
-	embedded "github.com/noffle/ipfs-embedded-shell"
-	context "golang.org/x/net/context"
+	embedded "github.com/whyrusleeping/ipfs-embedded-shell"
 )
 
 func NewShell() (Shell, error) {
