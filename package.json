@@ -25,7 +25,10 @@
   "issues_url": "",
   "language": "go",
   "license": "",
+  "gx":{
+	"dvcsimport":"github.com/noffle/fallback-ipfs-shell"
+  },
   "name": "fallback-ipfs-shell",
-  "version": "3.2.3"
+  "version": "3.2.4"
 }
 
