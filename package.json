@@ -4,9 +4,9 @@
   "gxDependencies": [
     {
       "author": "noffle",
-      "hash": "QmQ1TuGrcSXjsGXEhdWPJTyfkrgMHCu2pcENRxgHQQ59wL",
+      "hash": "QmcbLLZJa9oXnYTZWfS4T16n8B2mHFZkAzkKBNdGVzgG8g",
       "name": "ipfs-embedded-shell",
-      "version": "0.1.0"
+      "version": "0.1.1"
     },
     {
       "author": "ipfs",
@@ -29,6 +29,6 @@
 	"dvcsimport":"github.com/noffle/fallback-ipfs-shell"
   },
   "name": "fallback-ipfs-shell",
-  "version": "3.2.4"
+  "version": "3.2.5"
 }
 
